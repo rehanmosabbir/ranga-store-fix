@@ -6,22 +6,25 @@ const loadProducts = () => {
 };
 loadProducts();
 
-// show all product in UI 
+// show all product in UI
 const showProducts = (products) => {
+  console.log(products);
   const allProducts = products.map((pd) => pd);
+  console.log(allProducts);
   for (const product of allProducts) {
-    const image = product.images;
+    const image = product.image;
     const div = document.createElement("div");
     div.classList.add("product");
     div.innerHTML = `<div class="single-product">
-      <div>
-    <img class="product-image" src=${image}></img>
+        <div>
+          <img class="product-image" src=${image}></img>
+        </div>
+        <h3>${product.title}</h3>
+        <p>Category: ${product.category}</p>
+        <h2>Price: $ ${product.price}</h2>
+        <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-success">add to cart</button>
+        <button id="details-btn" class="btn btn-danger">Details</button>
       </div>
-      <h3>${product.title}</h3>
-      <p>Category: ${product.category}</p>
-      <h2>Price: $ ${product.price}</h2>
-      <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-success">add to cart</button>
-      <button id="details-btn" class="btn btn-danger">Details</button></div>
       `;
     document.getElementById("all-products").appendChild(div);
   }
@@ -73,8 +76,6 @@ const updateTaxAndCharge = () => {
 
 //grandTotal update function
 const updateTotal = () => {
-  const grandTotal =
-    getInputValue("price") + getInputValue("delivery-charge") +
-    getInputValue("total-tax");
+  const grandTotal = getInputValue("price") + getInputValue("delivery-charge") + getInputValue("total-tax");
   document.getElementById("total").innerText = grandTotal;
 };
