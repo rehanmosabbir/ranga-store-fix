@@ -223,7 +223,7 @@ const showProducts = (products) => {
         <p><i class="fas fa-star text-warning fs-5"></i><span class="fs-5 fw-bold text-warning">  ${product.rating.rate}<span class="text-secondary fs-6"> /5</span></span><span class="fw-bold text-secondary">  (${product.rating.count} ratings)</span></p>
         
         <hr/>
-        <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-outline-success">add to cart</button>
+        <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-outline-warning">add to cart</button>
         <button id="details-btn" class="btn btn-outline-danger">Details</button>
       </div>
       `;
