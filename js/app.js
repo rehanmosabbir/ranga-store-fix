@@ -203,11 +203,9 @@ const loadProducts = () => {
   showProducts(data);
 };
 
-// show all product in UI
+// show all products in UI
 const showProducts = (products) => {
-  console.log(products);
   const allProducts = products.map((pd) => pd);
-  console.log(allProducts);
   for (const product of allProducts) {
     const image = product.image;
     const div = document.createElement("div");
@@ -230,6 +228,8 @@ const showProducts = (products) => {
     document.getElementById("all-products").appendChild(div);
   }
 };
+
+// add to cart function
 let count = 0;
 const addToCart = (id, price) => {
   count = count + 1;
