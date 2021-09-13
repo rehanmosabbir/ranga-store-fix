@@ -24,12 +24,15 @@ body {
   box-shadow: 4px 4px 10px #222;
   border-radius: 10px;
 }
+.single-product-top {
+  min-height: 280px;
+}
 .product-image {
   width: 150px;
   height: 150px;
 }
 .cart {
-  width: 350px;
+  width: 340px;
   padding: 8px;
   box-shadow: 10px 10px 20px gray;
   border-radius: 5px;

@@ -210,43 +210,43 @@ const showStarIcon = (starNo) => {
 
   if (roundedStar === 1) {
     return `<p>
-          <i class="fas fa-star text-warning fs-5"></i>
-          <i class="far fa-star text-warning fs-5"></i>
-          <i class="far fa-star text-warning fs-5"></i>
-          <i class="far fa-star text-warning fs-5"></i>
-          <i class="far fa-star text-warning fs-5"></i>
+          <i class="fas fa-star text-warning fs-6"></i>
+          <i class="far fa-star text-warning fs-6"></i>
+          <i class="far fa-star text-warning fs-6"></i>
+          <i class="far fa-star text-warning fs-6"></i>
+          <i class="far fa-star text-warning fs-6"></i>
         </p>`;
   } else if (roundedStar === 2) {
     return `<p>
-          <i class="fas fa-star text-warning fs-5"></i>
-          <i class="fas fa-star text-warning fs-5"></i>
-          <i class="far fa-star text-warning fs-5"></i>
-          <i class="far fa-star text-warning fs-5"></i>
-          <i class="far fa-star text-warning fs-5"></i>
+          <i class="fas fa-star text-warning fs-6"></i>
+          <i class="fas fa-star text-warning fs-6"></i>
+          <i class="far fa-star text-warning fs-6"></i>
+          <i class="far fa-star text-warning fs-6"></i>
+          <i class="far fa-star text-warning fs-6"></i>
         </p>`;
   } else if (roundedStar === 3) {
     return `<p>
-          <i class="fas fa-star text-warning fs-5"></i>
-          <i class="fas fa-star text-warning fs-5"></i>
-          <i class="fas fa-star text-warning fs-5"></i>
-          <i class="far fa-star text-warning fs-5"></i>
-          <i class="far fa-star text-warning fs-5"></i>
+          <i class="fas fa-star text-warning fs-6"></i>
+          <i class="fas fa-star text-warning fs-6"></i>
+          <i class="fas fa-star text-warning fs-6"></i>
+          <i class="far fa-star text-warning fs-6"></i>
+          <i class="far fa-star text-warning fs-6"></i>
         </p>`;
   } else if (roundedStar === 4) {
     return `<p>
-          <i class="fas fa-star text-warning fs-5"></i>
-          <i class="fas fa-star text-warning fs-5"></i>
-          <i class="fas fa-star text-warning fs-5"></i>
-          <i class="fas fa-star text-warning fs-5"></i>
-          <i class="far fa-star text-warning fs-5"></i>
+          <i class="fas fa-star text-warning fs-6"></i>
+          <i class="fas fa-star text-warning fs-6"></i>
+          <i class="fas fa-star text-warning fs-6"></i>
+          <i class="fas fa-star text-warning fs-6"></i>
+          <i class="far fa-star text-warning fs-6"></i>
         </p>`;
   } else {
     return `<p>
-          <i class="fas fa-star text-warning fs-5"></i>
-          <i class="fas fa-star text-warning fs-5"></i>
-          <i class="fas fa-star text-warning fs-5"></i>
-          <i class="fas fa-star text-warning fs-5"></i>
-          <i class="fas fa-star text-warning fs-5"></i>
+          <i class="fas fa-star text-warning fs-6"></i>
+          <i class="fas fa-star text-warning fs-6"></i>
+          <i class="fas fa-star text-warning fs-6"></i>
+          <i class="fas fa-star text-warning fs-6"></i>
+          <i class="fas fa-star text-warning fs-6"></i>
         </p>`;
   }
 };
@@ -260,13 +260,15 @@ const showProducts = (products) => {
     div.classList.add("product");
 
     div.innerHTML = `<div class="single-product">
-        <div>
-          <img class="product-image" src=${image}></img>
+        <div class="single-product-top">
+          <div>
+            <img class="product-image" src=${image}></img>
+          </div>
+          <h4>${product.title}</h4>
+          <p>Category: ${product.category}</p>
         </div>
-        <h3>${product.title}</h3>
-        <p>Category: ${product.category}</p>
         <hr/>
-        <h2>Price: $ ${product.price}</h2>
+        <h3>Price: $ ${product.price}</h3>
         <p>${showStarIcon(`${product.rating.rate}`)}</p>
         <p><span class="fs-5 fw-bold text-warning">  ${product.rating.rate}<span class="text-secondary fs-6"> /5</span></span></p>
         <p><span class="fw-bold text-secondary">  (${product.rating.count} ratings)</span></p>
@@ -315,6 +317,9 @@ const setInnerText = (id, value) => {
 // update delivery charge and total Tax
 const updateTaxAndCharge = () => {
   const priceConverted = getInputValue("price");
+  if (priceConverted <= 200) {
+    setInnerText("delivery-charge", 20);
+  }
   if (priceConverted > 200) {
     setInnerText("delivery-charge", 30);
     setInnerText("total-tax", priceConverted * 0.2);
