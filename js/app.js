@@ -208,41 +208,40 @@ const showStarIcon = (starNo) => {
   const star = +starNo;
   const roundedStar = Math.round(star);
 
-  switch (roundedStar) {
-    case 1:
-      return `<p>
+  if (roundedStar === 1) {
+    return `<p>
           <i class="fas fa-star text-warning fs-5"></i>
           <i class="far fa-star text-warning fs-5"></i>
           <i class="far fa-star text-warning fs-5"></i>
           <i class="far fa-star text-warning fs-5"></i>
           <i class="far fa-star text-warning fs-5"></i>
         </p>`;
-    case 2:
-      return `<p>
+  } else if (roundedStar === 2) {
+    return `<p>
           <i class="fas fa-star text-warning fs-5"></i>
           <i class="fas fa-star text-warning fs-5"></i>
           <i class="far fa-star text-warning fs-5"></i>
           <i class="far fa-star text-warning fs-5"></i>
           <i class="far fa-star text-warning fs-5"></i>
         </p>`;
-    case 3:
-      return `<p>
+  } else if (roundedStar === 3) {
+    return `<p>
           <i class="fas fa-star text-warning fs-5"></i>
           <i class="fas fa-star text-warning fs-5"></i>
           <i class="fas fa-star text-warning fs-5"></i>
           <i class="far fa-star text-warning fs-5"></i>
           <i class="far fa-star text-warning fs-5"></i>
         </p>`;
-    case 4:
-      return `<p>
+  } else if (roundedStar === 4) {
+    return `<p>
           <i class="fas fa-star text-warning fs-5"></i>
           <i class="fas fa-star text-warning fs-5"></i>
           <i class="fas fa-star text-warning fs-5"></i>
           <i class="fas fa-star text-warning fs-5"></i>
           <i class="far fa-star text-warning fs-5"></i>
         </p>`;
-    case 5:
-      return `<p>
+  } else {
+    return `<p>
           <i class="fas fa-star text-warning fs-5"></i>
           <i class="fas fa-star text-warning fs-5"></i>
           <i class="fas fa-star text-warning fs-5"></i>
