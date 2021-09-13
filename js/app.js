@@ -203,6 +203,55 @@ const loadProducts = () => {
   showProducts(data);
 };
 
+// Show star icon to the UI
+const showStarIcon = (starNo) => {
+  const star = +starNo;
+  const roundedStar = Math.round(star);
+
+  switch (roundedStar) {
+    case 1:
+      return `<p>
+          <i class="fas fa-star text-warning fs-5"></i>
+          <i class="far fa-star text-warning fs-5"></i>
+          <i class="far fa-star text-warning fs-5"></i>
+          <i class="far fa-star text-warning fs-5"></i>
+          <i class="far fa-star text-warning fs-5"></i>
+        </p>`;
+    case 2:
+      return `<p>
+          <i class="fas fa-star text-warning fs-5"></i>
+          <i class="fas fa-star text-warning fs-5"></i>
+          <i class="far fa-star text-warning fs-5"></i>
+          <i class="far fa-star text-warning fs-5"></i>
+          <i class="far fa-star text-warning fs-5"></i>
+        </p>`;
+    case 3:
+      return `<p>
+          <i class="fas fa-star text-warning fs-5"></i>
+          <i class="fas fa-star text-warning fs-5"></i>
+          <i class="fas fa-star text-warning fs-5"></i>
+          <i class="far fa-star text-warning fs-5"></i>
+          <i class="far fa-star text-warning fs-5"></i>
+        </p>`;
+    case 4:
+      return `<p>
+          <i class="fas fa-star text-warning fs-5"></i>
+          <i class="fas fa-star text-warning fs-5"></i>
+          <i class="fas fa-star text-warning fs-5"></i>
+          <i class="fas fa-star text-warning fs-5"></i>
+          <i class="far fa-star text-warning fs-5"></i>
+        </p>`;
+    case 5:
+      return `<p>
+          <i class="fas fa-star text-warning fs-5"></i>
+          <i class="fas fa-star text-warning fs-5"></i>
+          <i class="fas fa-star text-warning fs-5"></i>
+          <i class="fas fa-star text-warning fs-5"></i>
+          <i class="fas fa-star text-warning fs-5"></i>
+        </p>`;
+  }
+};
+
 // show all products in UI
 const showProducts = (products) => {
   const allProducts = products.map((pd) => pd);
@@ -210,6 +259,7 @@ const showProducts = (products) => {
     const image = product.image;
     const div = document.createElement("div");
     div.classList.add("product");
+
     div.innerHTML = `<div class="single-product">
         <div>
           <img class="product-image" src=${image}></img>
@@ -218,10 +268,14 @@ const showProducts = (products) => {
         <p>Category: ${product.category}</p>
         <hr/>
         <h2>Price: $ ${product.price}</h2>
-        <p><i class="fas fa-star text-warning fs-5"></i><span class="fs-5 fw-bold text-warning">  ${product.rating.rate}<span class="text-secondary fs-6"> /5</span></span><span class="fw-bold text-secondary">  (${product.rating.count} ratings)</span></p>
+        <p>${showStarIcon(`${product.rating.rate}`)}</p>
+        <p><span class="fs-5 fw-bold text-warning">  ${product.rating.rate}<span class="text-secondary fs-6"> /5</span></span></p>
+        <p><span class="fw-bold text-secondary">  (${product.rating.count} ratings)</span></p>
         
         <hr/>
-        <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-outline-warning">add to cart</button>
+        <button onclick="addToCart(${product.id},${
+      product.price
+    })" id="addToCart-btn" class="buy-now btn btn-outline-warning">add to cart</button>
         <button id="details-btn" class="btn btn-outline-danger">Details</button>
       </div>
       `;
