@@ -244,7 +244,7 @@ const showProducts = (products) => {
           <h3>Price: $ ${product.price}</h3>
           <span id="item-${product.id}"></span>
           <span class="fs-5 fw-bold text-warning ms-2">  ${product.rating.rate}<span class="text-secondary fs-6"> /5</span></span>
-          <p><span class="fw-bold text-secondary">  (${product.rating.count} ratings)</span></p>
+          <p><span class="fw-bold text-secondary">( <i class="fas fa-users text-danger"></i>  ${product.rating.count} ratings)</span></p>
           <hr/>
        </div>
         <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-outline-warning">add to cart</button>
