@@ -205,53 +205,9 @@ const loadProducts = () => {
 
 // Show star icon to the UI
 const showStarIcon = (starNo, id) => {
-  // const star = +starNo;
-  // const roundedStar = Math.round(star);
-
-  // if (roundedStar === 1) {
-  //   return `<p>
-  //         <i class="fas fa-star text-warning fs-6"></i>
-  //         <i class="far fa-star text-warning fs-6"></i>
-  //         <i class="far fa-star text-warning fs-6"></i>
-  //         <i class="far fa-star text-warning fs-6"></i>
-  //         <i class="far fa-star text-warning fs-6"></i>
-  //       </p>`;
-  // } else if (roundedStar === 2) {
-  //   return `<p>
-  //         <i class="fas fa-star text-warning fs-6"></i>
-  //         <i class="fas fa-star text-warning fs-6"></i>
-  //         <i class="far fa-star text-warning fs-6"></i>
-  //         <i class="far fa-star text-warning fs-6"></i>
-  //         <i class="far fa-star text-warning fs-6"></i>
-  //       </p>`;
-  // } else if (roundedStar === 3) {
-  //   return `<p>
-  //         <i class="fas fa-star text-warning fs-6"></i>
-  //         <i class="fas fa-star text-warning fs-6"></i>
-  //         <i class="fas fa-star text-warning fs-6"></i>
-  //         <i class="far fa-star text-warning fs-6"></i>
-  //         <i class="far fa-star text-warning fs-6"></i>
-  //       </p>`;
-  // } else if (roundedStar === 4) {
-  //   return `<p>
-  //         <i class="fas fa-star text-warning fs-6"></i>
-  //         <i class="fas fa-star text-warning fs-6"></i>
-  //         <i class="fas fa-star text-warning fs-6"></i>
-  //         <i class="fas fa-star text-warning fs-6"></i>
-  //         <i class="far fa-star text-warning fs-6"></i>
-  //       </p>`;
-  // } else {
-  //   return `<p>
-  //         <i class="fas fa-star text-warning fs-6"></i>
-  //         <i class="fas fa-star text-warning fs-6"></i>
-  //         <i class="fas fa-star text-warning fs-6"></i>
-  //         <i class="fas fa-star text-warning fs-6"></i>
-  //         <i class="fas fa-star text-warning fs-6"></i>
-  //       </p>`;
-  // }
   const star = +starNo;
   const starPercentage = (star / 5) * 100;
-  const starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
+  const starPercentageRounded = `${starPercentage}%`;
   console.log(starPercentageRounded);
   const span = document.createElement("span");
   span.classList.add("stars");
@@ -282,8 +238,7 @@ const showProducts = (products) => {
           <h4>${product.title}</h4>
           <p>Category: ${product.category}</p>
         </div>
-        
-        
+
         <div class="bg-light bg-gradient">
           <hr/>
           <h3>Price: $ ${product.price}</h3>
