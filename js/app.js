@@ -204,57 +204,72 @@ const loadProducts = () => {
 };
 
 // Show star icon to the UI
-const showStarIcon = (starNo) => {
-  const star = +starNo;
-  const roundedStar = Math.round(star);
+const showStarIcon = (starNo, id) => {
+  // const star = +starNo;
+  // const roundedStar = Math.round(star);
 
-  if (roundedStar === 1) {
-    return `<p>
-          <i class="fas fa-star text-warning fs-6"></i>
-          <i class="far fa-star text-warning fs-6"></i>
-          <i class="far fa-star text-warning fs-6"></i>
-          <i class="far fa-star text-warning fs-6"></i>
-          <i class="far fa-star text-warning fs-6"></i>
-        </p>`;
-  } else if (roundedStar === 2) {
-    return `<p>
-          <i class="fas fa-star text-warning fs-6"></i>
-          <i class="fas fa-star text-warning fs-6"></i>
-          <i class="far fa-star text-warning fs-6"></i>
-          <i class="far fa-star text-warning fs-6"></i>
-          <i class="far fa-star text-warning fs-6"></i>
-        </p>`;
-  } else if (roundedStar === 3) {
-    return `<p>
-          <i class="fas fa-star text-warning fs-6"></i>
-          <i class="fas fa-star text-warning fs-6"></i>
-          <i class="fas fa-star text-warning fs-6"></i>
-          <i class="far fa-star text-warning fs-6"></i>
-          <i class="far fa-star text-warning fs-6"></i>
-        </p>`;
-  } else if (roundedStar === 4) {
-    return `<p>
-          <i class="fas fa-star text-warning fs-6"></i>
-          <i class="fas fa-star text-warning fs-6"></i>
-          <i class="fas fa-star text-warning fs-6"></i>
-          <i class="fas fa-star text-warning fs-6"></i>
-          <i class="far fa-star text-warning fs-6"></i>
-        </p>`;
-  } else {
-    return `<p>
-          <i class="fas fa-star text-warning fs-6"></i>
-          <i class="fas fa-star text-warning fs-6"></i>
-          <i class="fas fa-star text-warning fs-6"></i>
-          <i class="fas fa-star text-warning fs-6"></i>
-          <i class="fas fa-star text-warning fs-6"></i>
-        </p>`;
-  }
+  // if (roundedStar === 1) {
+  //   return `<p>
+  //         <i class="fas fa-star text-warning fs-6"></i>
+  //         <i class="far fa-star text-warning fs-6"></i>
+  //         <i class="far fa-star text-warning fs-6"></i>
+  //         <i class="far fa-star text-warning fs-6"></i>
+  //         <i class="far fa-star text-warning fs-6"></i>
+  //       </p>`;
+  // } else if (roundedStar === 2) {
+  //   return `<p>
+  //         <i class="fas fa-star text-warning fs-6"></i>
+  //         <i class="fas fa-star text-warning fs-6"></i>
+  //         <i class="far fa-star text-warning fs-6"></i>
+  //         <i class="far fa-star text-warning fs-6"></i>
+  //         <i class="far fa-star text-warning fs-6"></i>
+  //       </p>`;
+  // } else if (roundedStar === 3) {
+  //   return `<p>
+  //         <i class="fas fa-star text-warning fs-6"></i>
+  //         <i class="fas fa-star text-warning fs-6"></i>
+  //         <i class="fas fa-star text-warning fs-6"></i>
+  //         <i class="far fa-star text-warning fs-6"></i>
+  //         <i class="far fa-star text-warning fs-6"></i>
+  //       </p>`;
+  // } else if (roundedStar === 4) {
+  //   return `<p>
+  //         <i class="fas fa-star text-warning fs-6"></i>
+  //         <i class="fas fa-star text-warning fs-6"></i>
+  //         <i class="fas fa-star text-warning fs-6"></i>
+  //         <i class="fas fa-star text-warning fs-6"></i>
+  //         <i class="far fa-star text-warning fs-6"></i>
+  //       </p>`;
+  // } else {
+  //   return `<p>
+  //         <i class="fas fa-star text-warning fs-6"></i>
+  //         <i class="fas fa-star text-warning fs-6"></i>
+  //         <i class="fas fa-star text-warning fs-6"></i>
+  //         <i class="fas fa-star text-warning fs-6"></i>
+  //         <i class="fas fa-star text-warning fs-6"></i>
+  //       </p>`;
+  // }
+  const star = +starNo;
+  const starPercentage = (star / 5) * 100;
+  const starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
+  console.log(starPercentageRounded);
+  const span = document.createElement("span");
+  span.classList.add("stars");
+  span.innerHTML = `
+    <span class="stars-outer">
+      <span class="stars-inner" id="star-item-${id}"></span>
+    </span>
+  `;
+
+  document.getElementById(`item-${id}`).appendChild(span);
+  document.getElementById(`star-item-${id}`).style.width = starPercentageRounded;
 };
 
 // show all products in UI
 const showProducts = (products) => {
   const allProducts = products.map((pd) => pd);
   for (const product of allProducts) {
+    console.log(product);
     const image = product.image;
     const div = document.createElement("div");
     div.classList.add("product");
@@ -267,20 +282,22 @@ const showProducts = (products) => {
           <h4>${product.title}</h4>
           <p>Category: ${product.category}</p>
         </div>
-        <hr/>
-        <h3>Price: $ ${product.price}</h3>
-        <p>${showStarIcon(`${product.rating.rate}`)}</p>
-        <p><span class="fs-5 fw-bold text-warning">  ${product.rating.rate}<span class="text-secondary fs-6"> /5</span></span></p>
-        <p><span class="fw-bold text-secondary">  (${product.rating.count} ratings)</span></p>
         
-        <hr/>
-        <button onclick="addToCart(${product.id},${
-      product.price
-    })" id="addToCart-btn" class="buy-now btn btn-outline-warning">add to cart</button>
+        
+        <div class="bg-light bg-gradient">
+          <hr/>
+          <h3>Price: $ ${product.price}</h3>
+          <span id="item-${product.id}"></span>
+          <span class="fs-5 fw-bold text-warning ms-2">  ${product.rating.rate}<span class="text-secondary fs-6"> /5</span></span>
+          <p><span class="fw-bold text-secondary">  (${product.rating.count} ratings)</span></p>
+          <hr/>
+       </div>
+        <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-outline-warning">add to cart</button>
         <button id="details-btn" class="btn btn-outline-danger">Details</button>
       </div>
       `;
     document.getElementById("all-products").appendChild(div);
+    showStarIcon(`${product.rating.rate}`, `${product.id}`);
   }
 };
 
